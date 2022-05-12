@@ -10,7 +10,7 @@
         android:id="@+id/textView"
         android:layout_width="144dp"
         android:layout_height="44dp"
-        android:text="Register"
+        android:text="Register Page"
         android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -59,10 +59,11 @@
         android:id="@+id/nameET"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="48dp"
         android:ems="10"
         android:hint="Name"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
