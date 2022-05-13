@@ -47,6 +47,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setUpUI();
         setUpListeners();
 
+        //Need to push the realtime_database_connection branch
+
     }
 
 
