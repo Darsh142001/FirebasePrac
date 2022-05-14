@@ -99,7 +99,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     public void onComplete(@NonNull Task<AuthResult> task){
                         if(task.isSuccessful()){
                             //Check if email has been verified:
-                             FirebaseUser user = mAuth.getInstance().getCurrentUser();
+                             FirebaseUser user = mAuth.getCurrentUser();
 
                              if(user.isEmailVerified()){
 
