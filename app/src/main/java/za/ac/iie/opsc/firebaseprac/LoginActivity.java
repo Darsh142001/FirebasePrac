@@ -2,6 +2,7 @@ package za.ac.iie.opsc.firebaseprac;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -26,6 +27,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         mAuth = FirebaseAuth.getInstance();
 
         email = findViewById(R.id.emailLogin);
@@ -48,7 +50,38 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
     public void loginClick(View view)
     {
-        signIn(email.getText().toString(), password.getText().toString());
+        LoginUser();
+        //signIn(email.getText().toString(), password.getText().toString());
+    }
+
+    private void LoginUser()
+    {
+        String userEmail = email.getText().toString().trim();
+        String userPassword = password.getText().toString().trim();
+
+        if(userEmail.isEmpty()){
+            email.setError("Email is required");
+            email.requestFocus();
+            return;
+        }
+        if(!Patterns.EMAIL_ADDRESS.matcher(userEmail).matches()){
+            email.setError("Please provide a valid email!");
+            email.requestFocus();
+            return;
+        }
+        if(userPassword.isEmpty()){
+            password.setError("Password is required");
+            password.requestFocus();
+            return;
+        }
+        if(userPassword.length() < 6){
+            password.setError("Min password length should be 6 characters ");
+            password.requestFocus();
+            return;
+        }
+
+        signIn(userEmail, userPassword);
+
     }
 
     private void signIn(String email, String password){
@@ -57,8 +90,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task){
                         if(task.isSuccessful()){
-                            Toast.makeText(LoginActivity.this, "Authentication Successful.", Toast.LENGTH_SHORT).show();
-                            FirebaseUser user = mAuth.getCurrentUser();
+                            //redirect user to Menu activity.
+                            startActivity(new Intent(LoginActivity.this, MenuActivity.class)); //check AndroidManifest.
+
+                            //Toast.makeText(LoginActivity.this, "Authentication Successful.", Toast.LENGTH_SHORT).show();
+                           // FirebaseUser user = mAuth.getCurrentUser();
                             //updateUI(user);
                         }else{
                             Toast.makeText(LoginActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
