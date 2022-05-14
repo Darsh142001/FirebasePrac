@@ -23,6 +23,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     EditText email;
     EditText password;
     TextView goRegisterPg;
+    TextView forgotPassword;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +36,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         goRegisterPg = (TextView) findViewById(R.id.registerPg);
         goRegisterPg.setOnClickListener(this);
+
+        forgotPassword = (TextView) findViewById(R.id.forgotPasswordTv);
+        forgotPassword.setOnClickListener(this);
     }
 
     @Override
@@ -44,6 +48,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         {
             case R.id.registerPg:
                 startActivity(new Intent(this, MainActivity.class));
+                break;
+
+            case R.id.forgotPasswordTv:
+                startActivity(new Intent(this, ForgotPasswordActivity.class));
                 break;
         }
     }
